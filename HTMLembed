@@ -1,0 +1,30 @@
+//This script takes custom URL parameters and their values and passes them into a form as hidden fields.
+
+//In this case, the URL parameters are location_id, ms_id, and ms_ver. 
+
+//These are the hidden fields, belonging to an HTML embed that is situated within the Form
+
+//location_id refers to the B2B location
+//ms_id refers to the Mini Stainless ID
+//ms_ver refers to the Mini Stainless Version, which can have values of 'Scan Here' or 'Apply Here'
+//These are the hidden fields, belonging to an HTML embed that is situated within the Form
+
+<input type="disabled" name="location_id" value="">
+<input type="disabled" name="ms_id" value="">
+<input type="disabled" name="ms_ver" value="">
+
+<script>
+getREF = {
+	URL: (item) => {
+		let svalue = location.search.match(new RegExp("[\?\&]" + item + "=([^\&]*)(\&?)", "i"));
+		return svalue ? svalue[1] : svalue;
+	}
+};
+const inputLOCATION_ID = document.querySelector("input[name=location_id]");
+const inputMS_ID = document.querySelector("input[name=ms_id]");
+const inputMS_VER = document.querySelector("input[name=ms_ver]");
+
+inputLOCATION_ID.value =  getREF.URL("location_id");
+inputMS_ID.value =  getREF.URL("ms_id");
+inputMS_VER.value =  getREF.URL("ms_ver");
+</script>
